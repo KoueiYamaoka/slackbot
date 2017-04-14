@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from slackbot.bot import respond_to
+from slackbot.bot import listen_to, respond_to
 import re
 import math
 
 
+@listen_to(r'(\d+)(符|ふ)(\d+)(翻|飜|はん)(\d+)?(本場|ほんば)?')
+@listen_to(r'(\d+)(翻|飜|はん)(\d+)(符|ふ)(\d+)?(本場|ほんば)?')
 @respond_to(r'(\d+)(符|ふ)(\d+)(翻|飜|はん)(\d+)?(本場|ほんば)?')
 @respond_to(r'(\d+)(翻|飜|はん)(\d+)(符|ふ)(\d+)?(本場|ほんば)?')
 def calc(message, *params):
@@ -49,11 +51,14 @@ def calc(message, *params):
     # pay
     rh = 300 * homba
     th = 100 * homba
-    message.send('親なら... ' + str(ceil10(basic_point * 6) + rh) + ' (' + str(
-        ceil10(basic_point * 2) + th) + ' all)')
-    message.send('子なら... ' + str(ceil10(basic_point * 4) + rh) + ' (' + str(
-        ceil10(basic_point * 1) + th) + ',' + str(
-            ceil10(basic_point * 2) + th) + ')')
+    msg = '```\n'\
+          '親: ' + str(ceil10(basic_point * 6) + rh) + \
+          ' (' + str(ceil10(basic_point * 2) + th) + ' all)\n'\
+          '子: ' + str(ceil10(basic_point * 4) + rh) + \
+          ' (' + str(ceil10(basic_point * 1) + th) + \
+          ',' + str(ceil10(basic_point * 2) + th) + ')\n' + \
+          '```'
+    message.send(msg)
 
 
 def ceil10(x):
