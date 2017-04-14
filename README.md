@@ -1,12 +1,22 @@
 # Slack Bot
 
 とある研究室の Slack で運用されている Bot "shumaikun" です．
-Bot の機能は Python で実装されています．  
+Bot の機能は Python で実装されています．
 Python のお勉強をしつつ Slack に有意義な機能を追加していこうというコンセプトです．
 
 ## Bot の機能
 
-まだ何も実装されていません．  
+* おみくじ
+  `omikuji` もしくは `おみくじ` でおみくじを引けます.
+
+* 投票機能
+  `投票` もしくは `vote` で投票フォームを作れます．
+  * `vote 4` で1から4までの投票フォームが作られます
+  * `vote 2-4` で2から4までの投票フォームが作られます
+
+* 麻雀点数計算
+  飜と符を入力すると点数を返します．任意で本場をつけることもできます．
+
 また，現在では "shumaikun" が反応するようになっていないワードを DM で受けとると
 "Command Not Found." と返してきます．
 
@@ -15,7 +25,7 @@ Python のお勉強をしつつ Slack に有意義な機能を追加していこ
 ## Bot の機能開発について
 
 Bot の開発に参加するには，このリポジトリを
-[Fork](https://github.com/KoueiYamaoka/slackbot) して下さい．  
+[Fork](https://github.com/KoueiYamaoka/slackbot) して下さい．
 以下は基本的な流れになります．
 詳しくは「プルリクエスト 作成」とかで検索してみて下さい．
 
@@ -28,15 +38,15 @@ Bot の開発に参加するには，このリポジトリを
 
 ### 【重要】機能をテストする場合
 
-ローカルにあるコードを動作させるには Python3 の slackbot ライブラリが必要です．  
+ローカルにあるコードを動作させるには Python3 の slackbot ライブラリが必要です．
 ``$ pip install slackbot``
 
-起動は次のコマンドで行います．  
+起動は次のコマンドで行います．
 ``$ python3 run.py``
 
 Python の slackbot はローカルでテストしようとするとコードの大幅な
 書き換えが必要になって大変なので，開発中のテストを行うための Bot である
-"*shumaikun_dev*" が Slack のチャンネル "*dev_shumaikun*" にいます．  
+"*shumaikun_dev*" が Slack のチャンネル "*dev_shumaikun*" にいます．
 
 また，"*shumaikun_dev*" を起動させるためには，API TOKEN 等を含んだ
 `setting_slackbot.py` をリポジトリに配置する必要がありますが，これは
