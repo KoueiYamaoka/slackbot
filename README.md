@@ -11,7 +11,7 @@ Botの機能は [wiki](https://github.com/KoueiYamaoka/slackbot/wiki) にあり�
 また，現在では "shumaikun" が反応するようになっていないワードを DM で受けとると
 "Command Not Found." と返してきます．
 
-(機能を実装したら，内容や使い方等をここへ簡単に記載してくれると助かります．)
+(機能を実装したら，内容や使い方等を [wiki](https://github.com/KoueiYamaoka/slackbot/wiki) へ記載してくれると助かります．)
 
 ## Bot の機能開発について
 
