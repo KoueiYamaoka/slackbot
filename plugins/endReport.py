@@ -2,7 +2,7 @@
 
 import sys
 from slacker import Slacker
-sys.path.append('/home/yamaoka/tsukuba/mmlab/slackbot')
+sys.path.append('/home/shumaikun/slackbot')
 import slackbot_settings
 
 
