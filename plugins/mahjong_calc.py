@@ -13,10 +13,17 @@ import math
 def calc(message, *params):
 
     # set hu and han
+    out_order = 0
     if re.match('(符|ふ)', params[1]):
         hu, han = int(params[0]), int(params[2])
+        out_order = 1
+    elif re.match('(翻|飜|はん)', params[1]):
+        han, hu = int(params[0]), int(params[2])
     else:
         han, hu = int(params[0]), int(params[2])
+        if han > hu:
+            han, hu = hu, han
+            out_order = 1
     # set homba
     if re.match('(本場|ほんば)', str(params[5])):
         homba = int(params[4])
@@ -38,26 +45,40 @@ def calc(message, *params):
 
     # calc basic point
     basic_point = hu * 2**(han + 2)
+    add_status = ""
     if basic_point > 2000:
         if han < 6:
             basic_point = 2000
+            add_status = " 満貫"
         elif 6 <= han <= 7:
             basic_point = 3000
+            add_status = " 跳満"
         elif 8 <= han <= 10:
             basic_point = 4000
+            add_status = " 倍満"
         elif 11 <= han <= 12:
             basic_point = 6000
+            add_status = " 三倍満"
         else:
             basic_point = 8000
+            add_status = " 数え役満"
 
     # pay
     rh = 300 * homba
     th = 100 * homba
     msg = '```\n'
     if homba > 0:
-        msg += str(han) + '飜' + str(hu_orig) + '符 ' + str(homba) + '本場\n'
+        if out_order:
+            msg += str(hu_orig) + '符' + str(han) + '飜 ' + str(homba) + \
+                   '本場' + add_status + '\n'
+        else:
+            msg += str(han) + '飜' + str(hu_orig) + '符 ' + str(homba) + \
+                   '本場' + add_status + '\n'
     else:
-        msg += str(han) + '飜' + str(hu_orig) + '符\n'
+        if out_order:
+            msg += str(hu_orig) + '符' + str(han) + '飜' + add_status + '\n'
+        else:
+            msg += str(han) + '飜' + str(hu_orig) + '符' + add_status + '\n'
     msg += '親: ' + str(ceil10(basic_point * 6) + rh) + \
           ' (' + str(ceil10(basic_point * 2) + th) + ' all)\n'\
           '子: ' + str(ceil10(basic_point * 4) + rh) + \
