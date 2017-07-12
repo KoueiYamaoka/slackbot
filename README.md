@@ -30,9 +30,11 @@ Bot の開発に参加するには，このリポジトリを
 ### 【重要】機能をテストする場合
 
 ローカルにあるコードを動作させるには Python3 の slackbot ライブラリが必要です．
+
 ``$ pip install slackbot``
 
 起動は次のコマンドで行います．
+
 ``$ python3 run.py``
 
 Python の slackbot はローカルでテストしようとするとコードの大幅な
