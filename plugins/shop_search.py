@@ -2,7 +2,7 @@
 
 from slackbot.bot import listen_to, respond_to
 import json, re, datetime
-from numpy import *
+import random
 
 @respond_to(r'^(meshi)(\s\w+){0,2}$')
 @listen_to(r'^(meshi)(\s\w+){0,2}')
@@ -32,7 +32,7 @@ def meshi_search(message, *args):
             flag[1] = 'nearby'
     # make list
     list = []
-    if flag[0] == 1:
+    if flag[0] == 0:
         list.extend(shops['ramen'])
         list.extend(shops['teishoku'])
         list.extend(shops['restaurant'])
@@ -44,7 +44,7 @@ def meshi_search(message, *args):
     if flag[0] == 3:
         list.extend(shops['restaurant'])
     while True:
-        meshiya = random.choice(list)
+        meshiya = list[int(random.random() * len(list))]
         # check area
         if 'none' != flag[1]:
             if meshiya['area'] != flag[1]:
