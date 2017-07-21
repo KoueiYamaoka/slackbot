@@ -18,9 +18,9 @@ def meshi_search(message, *args):
     day = 6 if day == 0 else day - 1
     # check arguments
     for s in opt:
-        if re.match('ramen|ラーメン|麺', s):
+        if re.match('ramen|ラーメン|麺|:ramen:', s):
             flag[0] = 1
-        if re.match('定食', s):
+        if re.match('定食|teishoku', s):
             flag[0] = 2
         if re.match('ファミレス|レストラン', s):
             flag[0] = 3
@@ -30,21 +30,27 @@ def meshi_search(message, *args):
             flag[1] = 'sakura'
         if re.match('徒歩|walk', s):
             flag[1] = 'nearby'
+        if re.match('春日|kasuga', s):
+            flag[1] = 'kasuga'
     # make list
-    list = []
+    mlist = []
+    idx = 0
+    meshiya = 0
+    selected = []
     if flag[0] == 0:
-        list.extend(shops['ramen'])
-        list.extend(shops['teishoku'])
-        list.extend(shops['restaurant'])
-        list.extend(shops['other'])
+        mlist.extend(shops['ramen'])
+        mlist.extend(shops['teishoku'])
+        mlist.extend(shops['restaurant'])
+        mlist.extend(shops['other'])
     if flag[0] == 1:
-        list.extend(shops['ramen'])
+        mlist.extend(shops['ramen'])
     if flag[0] == 2:
-        list.extend(shops['teishoku'])
+        mlist.extend(shops['teishoku'])
     if flag[0] == 3:
-        list.extend(shops['restaurant'])
-    while True:
-        meshiya = list[int(random.random() * len(list))]
+        mlist.extend(shops['restaurant'])
+    for i in range(0, 50):
+        idx = int(random.random() * len(mlist))
+        meshiya = mlist[idx]
         # check area
         if 'none' != flag[1]:
             if meshiya['area'] != flag[1]:
@@ -52,8 +58,17 @@ def meshi_search(message, *args):
         # check time
         for t in meshiya['open'][day]:
             if t[0] <= nowtime <= t[1]:
-                message.send(meshiya['name'] + ' が提案されました')
-                return
+                selected.append(meshiya)
+                mlist.pop(idx)
+        if len(selected) == 3 or len(mlist) == 0:
+            break
+    outstr = ''
+    if len(selected) != 0:
+        for s in selected:
+            outstr += ('・' + s['name'] + '\n')
+        message.send(outstr)
+    else:
+        message.send('飯屋どこもやっていないんじゃないですか？')
 
 @respond_to('^(man meshi)')
 @listen_to('^(man meshi)')
