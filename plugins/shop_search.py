@@ -15,7 +15,6 @@ def meshi_search(message, *args):
     now = datetime.datetime.now()
     nowtime = now.hour * 100 + now.minute
     day = now.weekday()
-    day = 6 if day == 0 else day - 1
     # check arguments
     for s in opt:
         if re.match('ramen|ラーメン|麺|:ramen:', s):
