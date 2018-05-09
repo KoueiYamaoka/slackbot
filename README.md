@@ -11,7 +11,8 @@ Botの機能は [wiki](https://github.com/KoueiYamaoka/slackbot/wiki) にあり�
 また，現在では "shumaikun" が反応するようになっていないワードを DM で受けとると
 "Command Not Found." と返してきます．
 
-(機能を実装したら，内容や使い方等を [wiki](https://github.com/KoueiYamaoka/slackbot/wiki) へ記載してくれると助かります．)
+(機能を実装したら，内容や使い方等を [wiki](https://github.com/KoueiYamaoka/slackbot/wiki)
+へ記載してくれると助かります．)
 
 ## Bot の機能開発について
 
@@ -27,6 +28,9 @@ Bot の開発に参加するには，このリポジトリを
 
 :warning: Bot の機能を書いた Python コードは `plugins/` 中に配置して下さい．
 
+JSONなどで作ったデータベースは Git で管理するのを止めました．
+今後はサーバへ直接ファイルをアップロードして下さい．
+
 ### 【重要】機能をテストする場合
 
 ローカルにあるコードを動作させるには Python3 の slackbot ライブラリが必要です．
@@ -37,14 +41,13 @@ Bot の開発に参加するには，このリポジトリを
 
 ``$ python3 run.py``
 
-Python の slackbot はローカルでテストしようとするとコードの大幅な
-書き換えが必要になって大変なので，開発中のテストを行うための Bot である
-"*shumaikun_dev*" が Slack のチャンネル "*dev_shumaikun*" にいます．
+Python の slackbot はローカルでテストしようとするとコードの大幅な書き換えが必要になって大変なので，開発中のテストを行うための
+Bot である "*shumaikun_dev*" が Slack のチャンネル "*dev_shumaikun*" にいます．
 
 また，"*shumaikun_dev*" を起動させるためには，API TOKEN 等を含んだ
 `setting_slackbot.py` をリポジトリに配置する必要がありますが，これは
-API TOKEN を含むためこのリポジトリにはありません．開発に参加される方に
-は Slack 等でコンタクトを頂ければファイルを配布します．
+API TOKEN を含むためこのリポジトリにはありません．開発に参加される方には
+Slack 等でコンタクトを頂ければファイルを配布します．
 
 動作確認を行い，正常に動くことを確認してからプルリクエストを送って下さい．
 
