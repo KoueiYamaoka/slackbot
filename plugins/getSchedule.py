@@ -12,7 +12,7 @@ import json
 @respond_to('event')
 def getDateEvent(message, *params):
     # Set tesmup's URL and API_KEY
-    with open('config.json', 'r') as f:
+    with open('data/config.json', 'r') as f:
         config = json.load(f)
     URL = config['teamup']['URL']
     API_KEY = config['teamup']['API_KEY']

@@ -1,3 +1,5 @@
 __pycache__/
 slackbot_settings.py
-plugins/config.json
+plugins/data/shop.json
+plugins/data/config.json
+
