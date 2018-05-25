@@ -1,0 +1,6 @@
+{
+  "teamup" : {
+    "URL" : "https://api.teamup.com/yourpage/",
+    "API_KEY" : "your api key"
+  }
+}
