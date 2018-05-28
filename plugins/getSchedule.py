@@ -6,13 +6,15 @@ from re import match
 from math import log10
 import datetime
 import json
+import os
 
 
 @listen_to('event')
 @respond_to('event')
 def getDateEvent(message, *params):
     # Set tesmup's URL and API_KEY
-    with open('data/config.json', 'r') as f:
+    conf_path = os.path.join(os.path.dirname(__file__), 'data', 'config.json')
+    with open(conf_path, 'r') as f:
         config = json.load(f)
     URL = config['teamup']['URL']
     API_KEY = config['teamup']['API_KEY']
